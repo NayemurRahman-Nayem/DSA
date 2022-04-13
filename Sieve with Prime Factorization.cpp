@@ -1,38 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std ; 
+typedef long long ll ; 
+const int mx = 1e5+123 ; 
 
-bitset<mx>vis;
-vl prime;
+
+bitset<mx>vis ; 
+vector<ll> prime ; 
 void sieve()
 {
-    prime.push_back(2);
-    for(ll i=3;i*i<=mx;i+=2)
-        if(!vis[i])
-            for(ll j=i*i;j<mx;j+=2*i)
-                vis[j]=1;
-    for(ll i=3;i<mx;i+=2)
-        if(!vis[i])
-            prime.push_back(i);
-}
-
-void prime_factorizarion (ll n)
-{
-  
-    for(auto p:prime)
-    {
-        if(p*p>n) break;
-        if(n%p==0)
+        vis[1]=1; 
+        for(int i=3;i*i<mx;i+=2)
         {
-            int cnt=0;
-            while(n%p==0)
-            {
-                cnt++;
-                n/=p;
-            }
+                if(!vis[i])
+                {
+                        for(int j=i*i;j<mx;j+=2*i)
+                        {
+                                vis[j] = 1 ;  
+                        }
+                }
         }
-    }
-    if(n!=1)
-    {
-
-    }
-
+        prime.push_back(2) ; 
+        for(int i=3;i<mx;i+=2) 
+        {
+                if(!vis[i]) prime.push_back(i) ;  
+        }
 }
 
+int main()
+{
+        sieve() ; 
+        int n ; 
+        cin >> n; 
+        cout << prime[n-1] << endl ; 
+}
