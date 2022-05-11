@@ -48,7 +48,7 @@ const double eps = 1e-7 ;
 ll fen[mx] , n , a[mx] , m ; 
 
 
-void update(ll i , ll add)
+void update(ll i , ll add)            // update the whole fenwick tree 
 {
         while(i<=n)
         {
@@ -58,7 +58,7 @@ void update(ll i , ll add)
 }
 
 
-ll sum(ll i)
+ll sum(ll i)              // return sum from index 1 to index i 
 {
         ll s = 0 ; 
         while(i>0)
@@ -70,13 +70,13 @@ ll sum(ll i)
 }
 
 
-ll rangesum(ll l , ll r)
+ll rangesum(ll l , ll r)        // returns the sum between index l and r 
 {
         return sum(r) - sum(l-1) ; 
 }
 
 
-ll binary_lifting(ll k)
+ll binary_lifting(ll k)            // find the lower bound of k as like as binary search 
 {
         ll curr = 0 , presum = 0  ; 
         for(int i=log2(n);i>=0;i--)
@@ -99,7 +99,7 @@ void solution()
                 cin >> a[i] ;
                 update(i,a[i]) ;  
         }
-        
+
 
 }
 
