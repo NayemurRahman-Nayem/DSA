@@ -48,7 +48,7 @@ const double eps = 1e-7 ;
 ll fen[mx] , n , a[mx] , m ; 
 
 
-void update(ll i , ll add)            // update the whole fenwick tree 
+void update(ll i , ll add)            // add new value 'add' in the ith index of the fenwick tree
 {
         while(i<=n)
         {
