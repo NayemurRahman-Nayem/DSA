@@ -57,6 +57,12 @@ void update(ll i , ll add)            // add new value 'add' in the ith index of
         }
 }
 
+void rangeupdate(ll l , ll r , ll val)          // update range from index l to r 
+{
+        update(l,val) ; 
+        update(r+1,-val) ; 
+}
+
 
 ll sum(ll i)              // return sum from index 1 to index i 
 {
