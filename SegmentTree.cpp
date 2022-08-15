@@ -45,68 +45,82 @@ const double eps = 1e-7 ;
 
 
 
-int a[mx] , sgtree[mx*4] ; 
-int T ; 
+int a[mx] , n , m ;
+int T ;
+
+
+struct info {
+    ll prop, sum;
+} sgtree[mx * 3];
+
 
 void build(int node , int start , int end)
-{ 
-        if(start==end) 
+{
+        if(start==end)
         {
-                sgtree[node] = a[start]  ; 
-                return ;   
+                sgtree[node].sum = a[end]  ;
+                return ;
         }
-        int mid = (start+end) / 2 ; 
-        int left = node*2 ; 
-        int right = node*2 + 1 ; 
-        build(left,start,mid) ; 
-        build(right,mid+1,end) ; 
-        sgtree[node] = sgtree[left] + sgtree[right] ; 
+        int mid = (start+end) / 2 ;
+        int left = node*2 ;
+        int right = node*2 + 1 ;
+        build(left,start,mid) ;
+        build(right,mid+1,end) ;
+        sgtree[node].sum = sgtree[left].sum + sgtree[right].sum ;
 }
 
 
-int query(int node , int start , int end , int l , int r )
+
+void update(int node , int start , int end , int l , int r , ll x )
 {
-        if(l>end or r<start) return 0 ; 
-        else if(l<=start and end<=r) return sgtree[node] ; 
-        int mid = (start+end) / 2 ; 
-        int left = node*2 ; 
-        int right = node*2 + 1 ; 
-        int ret1 = query(left,start,mid,l,r) ; 
-        int ret2 = query(right,mid+1,end,l,r) ; 
-        return ret1 + ret2 ; 
+        if(l>end || r<start) return ;
+        if(l<=start and end<=r)
+        {
+                sgtree[node].sum += (end-start+1)*x ;
+                sgtree[node].prop += x ;
+                return ;
+        }
+        int mid = (start+end) / 2 ;
+        int left = node*2 ;
+        int right = node*2 + 1 ;
+        update(left,start,mid,l,r,x) ;
+        update(right,mid+1,end,l,r,x) ;
+        sgtree[node].sum = sgtree[left].sum + sgtree[right].sum + (end-start+1)*sgtree[node].prop;
 }
 
 
-void update(int node , int start , int end , int index , int newval )
+
+ll query(int node , int start , int end , int l , int r , ll carry )
 {
-        if(index>end or index<start) 
-        {
-                return ; 
-        } 
-        if(start==end and index==start)  
-        {
-                sgtree[node] = newval  ; 
-                return ; 
-        } 
-        int mid = (start+end) / 2 ; 
-        int left = node*2 ; 
-        int right = node*2 + 1 ; 
-        update(left,start,mid,index,newval) ; 
-        update(right,mid+1,end,index,newval) ; 
-        sgtree[node] = sgtree[left] + sgtree[right] ; 
+       if(l>end || r<start) return 0;
+       if(l<=start and end<=r)
+       {
+                return sgtree[node].sum + carry*(end-start+1) ;
+       }
+       int mid = (start+end)/2 ;
+       int left = node*2 ;
+       int right = node*2 + 1 ;
+       ll p1 = query(left,start,mid,l,r,carry+sgtree[node].prop) ;
+       ll p2 = query(right,mid+1,end,l,r,carry+sgtree[node].prop) ;
+       return p1+p2 ;
 }
+
+
 
 void solution()
-{       
-        int n , m ; 
+{
         cin >> n >> m ;
-        for(int i=0;i<=n;i++) sgtree[i] = 0  ; 
+        for(int i=0;i<=3*n;i++)
+        {
+                sgtree[i].sum = 0 ;
+                sgtree[i].prop = 0 ;
+        }
         for(int i=1;i<=n;i++)
         {
-                cin >> a[i] ; 
-        } 
+                cin >> a[i] ;
+        }
         build(1,1,n) ;
-        
+
 }
 
 
