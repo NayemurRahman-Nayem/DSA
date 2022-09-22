@@ -61,6 +61,43 @@ ll Hashval2(ll l , ll r)
 }
 
 
+ll getHashval1(string s)
+{
+        ll H = 0 ;
+        for(int i=0;i<s.size();i++)
+        {
+                H = ((1LL*H*P1) + s[i] % mod1 ) % mod1 ; 
+        }
+        return H ; 
+}
+
+ll getHashval2(string s) 
+{
+        ll H = 0 ; 
+        for(int i=0;i<s.size();i++) 
+        {
+                H = ( (1LL*H*P2) + s[i] % mod2 ) % mod2 ; 
+        }
+        return H ; 
+}
+
+bool check(string s , string t)
+{
+        ll H1 = getHashval1(t) ; 
+        ll H2 = getHashval2(t) ; 
+        ll len = t.size() ; 
+        for(int i=0;i<s.size();i++) 
+        {
+                int j = i + len - 1 ; 
+                if(j>=s.size()) break ; 
+                ll val1 = Hashval1(i,j) ; 
+                ll val2 = Hashval2(i,j) ; 
+                if(val1==H1 and val2==H2) return true ; 
+        }
+        return false ; 
+}
+
+
 void solution()
 { 
         string s ; 
