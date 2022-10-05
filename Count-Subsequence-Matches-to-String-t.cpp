@@ -46,7 +46,7 @@ const double eps = 1e-7 ;
 
 
 
-int countWays(string s, string t)
+int countWays(string s, string t)    // Iterative Approach 
 {
         int n = s.size(), m = t.size() ;
         vector<double> count(m, 0) ;
@@ -65,7 +65,7 @@ int countWays(string s, string t)
         // Space Complexity O(M) 
 }
 
-int countSubseq(string s, string t) 
+int countSubseq(string s, string t)  // Iterative DP 
 {
         int n = s.size() ; 
         int m = t.size() ;
