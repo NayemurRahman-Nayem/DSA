@@ -125,3 +125,7 @@ int main()
         while (_--) solution();
         return 0;
 }
+
+
+// Document Link : https://docs.google.com/document/d/1xajsUhFJtQ0in1KzU6dHU2mMMX3UviUuwjjNIhaJtL0/edit 
+
