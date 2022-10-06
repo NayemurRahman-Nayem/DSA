@@ -109,3 +109,8 @@ int main()
         while (_--) solution();
         return 0;
 }
+
+
+
+// Document Link : https://docs.google.com/document/d/1DMygBioM3P-cpsRnNvJrW-cPKu4EwldlkwZDVQulfQU/edit 
+
