@@ -52,13 +52,13 @@ const ll LOG = 17 ;
 // ---------------------------------------------------------------------------------------------------------------------
 
 
-ll sps[mx][LOG]  ;
+ll spt[mx][LOG]  ;
 ll lg[mx] , a[mx] ;
 
 ll query(ll l, ll r) {
     ll length = r - l + 1 ;
     ll k = lg[length] ;
-    return min(sps[l][k],sps[r-(1<<k)+1][k]) ;
+    return min(spt[l][k],spt[r-(1<<k)+1][k]) ;
 }
 
 
@@ -73,11 +73,11 @@ void solution(ll cs) {
     }
     for(ll i=1;i<=n;i++) {
         cin >> a[i] ;
-        sps[i][0] = a[i] ;
+        spt[i][0] = a[i] ;
     }
     for(ll k=1;k<=lg[n];k++) {
         for(ll i=1;i+(1<<k)-1<=n;i++) {
-            sps[i][k] = min(sps[i][k-1],sps[i+(1<<(k-1))][k-1]) ;
+            spt[i][k] = min(spt[i][k-1],spt[i+(1<<(k-1))][k-1]) ;
         }
     }
     for(ll i=0;i<q;i++) {
