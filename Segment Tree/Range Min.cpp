@@ -56,7 +56,7 @@ ll tc ;
 
 struct info {
     ll prop, val;
-} segtree[mx * 3];
+} segtree[mx * 4];
 
 
 void build(int node , int start , int end) {
@@ -111,7 +111,7 @@ void solution(ll cs) {
     for(ll i=1;i<=n;i++) {
         cin >> a[i] ; 
     }
-    for(ll i=0;i<=3*n;i++) {
+    for(ll i=0;i<=4*n;i++) {
         segtree[i].val = infLL ; 
     }
     build(1,1,n) ; 
