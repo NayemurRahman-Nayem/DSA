@@ -76,7 +76,7 @@ Node* convertArr2LL(vector<int>&arr) {
     return head ; 
 }
 
-vector<int> GetLinkedList(Node *head) {
+vector<int> LinkedList2Arr(Node *head) {
     Node * mover = head ;
     vector<int> ret ;  
     while(mover) {
@@ -86,10 +86,11 @@ vector<int> GetLinkedList(Node *head) {
     return ret ; 
 }
 
+
 void solution(int cs) {
     vector<int> a = {1,2,3,4,5,6,7,8,9,10} ; 
     Node* head = convertArr2LL(a) ; 
-    vector<int>ans = GetLinkedList(head) ; 
+    vector<int>ans = LinkedList2Arr(head) ; 
     for(auto it:ans) cout << it << " " ; 
 }
 
