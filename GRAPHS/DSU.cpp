@@ -19,11 +19,6 @@ typedef pair<ll, ll> pll ;
 #define allr(a) (a).begin(),(a).end()
 #define F first
 #define S second
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-using namespace __gnu_pbds ;
-template <class T>
-using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update> ;
 #define pb push_back
 #define PI 3.14159265358979323
 #define file() freopen("input.txt", "r", stdin); freopen("output.txt", "w", stdout)
