@@ -50,13 +50,15 @@ ll LOG = 21 ;
 // -------------------------------------------------------------------------------------------------------
 
 
-void InsertionSort(vector<int>&a , int n) {
-    for(int i=1;i<n;i++) {
-        int j = i ; 
-        while(j>0 and a[j]<a[j-1]) {
-            swap(a[j],a[j-1]) ; 
-            j--; 
+void SelectionSort(vector<int>&a , int n) {
+    for(int i=0;i<n-1;i++) {
+        int mini = i ; 
+        for(int j=i;j<n;j++) {
+            if(a[j]<a[mini]) {
+                mini = j ; 
+            }
         }
+        swap(a[mini],a[i]) ; 
     }
 }
 
@@ -67,7 +69,7 @@ void solution(int cs) {
     for(int i=0;i<n;i++) {
         cin >> a[i] ; 
     }
-    InsertionSort(a,n) ;           // O(n2)
+    SelectionSort(a,n) ;           // O(n2)
     for(int i=0;i<n;i++)  {
         cout << a[i] << " " ; 
     }
@@ -80,7 +82,7 @@ int main() {
     file() ;
     #endif
     int cs = 1 ;
-    //cin >> cs ;
+    cin >> cs ;
     for(ll i=1;i<=cs;i++) solution(i) ;
     return 0 ;
 }
